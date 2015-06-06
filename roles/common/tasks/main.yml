@@ -17,6 +17,6 @@
 - name: put authorized key for nathan in place
   action: authorized_key user=deploy key="{{ lookup('pipe', 'curl -s https://github.com/anoldguy.keys|head -1') }}"
 - name: put authorized key for ukiah in place
-  action: authorized_key user=deploy key="{{ lookup('pipe', 'curl -s https://github.com/supermighty.keys|head -1') }}"
+  action: authorized_key user=deploy key="{{ lookup('pipe', 'curl -s https://github.com/supermighty.keys|tail -1') }}"
 - name: put authorized key for eric in place
   action: authorized_key user=deploy key="{{ lookup('pipe', 'curl -s https://github.com/ericlathrop.keys|head -1') }}"
