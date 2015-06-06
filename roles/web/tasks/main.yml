@@ -7,7 +7,7 @@
 
 - name: Create Web Root
   when: nginxinstalled|success
-  file: dest=/www/louisville.io/htdocs mode=775 state=directory owner=www-data group=www-data
+  file: dest=/www/louisville.io/htdocs mode=2775 state=directory owner=www-data group=www-data
   notify:
   - Reload Nginx
 
