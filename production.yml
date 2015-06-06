@@ -2,6 +2,7 @@
 - hosts: production
   roles:
     - common
+    - web
   remote_user: root
   vars:
 

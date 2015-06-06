@@ -1,0 +1,23 @@
+---
+- name: Install Nginx
+  apt: pkg=nginx state=installed update_cache=true
+  notify:
+  - Start Nginx
+  register: nginxinstalled
+
+- name: Create Web Root
+  when: nginxinstalled|success
+  file: dest=/www/louisville.io/htdocs mode=775 state=directory owner=www-data group=www-data
+  notify:
+  - Reload Nginx
+
+- name: Add nginx vhost config
+  when: nginxinstalled|success
+  register: nginxconfig
+  template: src=louisville.io.j2 dest=/etc/nginx/sites-available/louisville.io.conf owner=root group=root
+
+- name: Web Root Permissions
+  when: nginxinstalled|success
+  file: dest=/www/louisville.io mode=775 state=directory owner=www-data group=www-data recurse=yes
+  notify:
+    - Reload Nginx
