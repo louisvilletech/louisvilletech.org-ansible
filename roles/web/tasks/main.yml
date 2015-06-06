@@ -5,10 +5,6 @@
   - Start Nginx
   register: nginxinstalled
 
-- name: Disable Default Site
-  when: nginxinstalled|success
-  file: dest=/etc/nginx/sites-enabled/default state=absent
-
 - name: Create Web Root
   when: nginxinstalled|success
   file: dest=/www/louisville.io/htdocs mode=775 state=directory owner=www-data group=www-data
@@ -22,9 +18,11 @@
 
 - name: Activate the app
   when: nginxinstalled
-  file: src=/etc/nginx/sites-available/louisville.io.conf
-        dest=/etc/nginx/sites-enabled/louisville.io.conf
-        state=link
+  file: src=/etc/nginx/sites-available/louisville.io.conf dest=/etc/nginx/sites-enabled/louisville.io.conf state=link
+
+- name: Disable Default Site
+  when: nginxinstalled|success
+  file: dest=/etc/nginx/sites-enabled/default state=absent
 
 - name: Web Root Permissions
   when: nginxinstalled|success
