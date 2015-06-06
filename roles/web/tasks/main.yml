@@ -17,7 +17,7 @@
   copy: src=louisville.io.conf dest=/etc/nginx/sites-available/louisville.io.conf owner=root group=root
 
 - name: Activate the app
-  when: nginxinstalled
+  when: nginxinstalled|success
   file: src=/etc/nginx/sites-available/louisville.io.conf dest=/etc/nginx/sites-enabled/louisville.io.conf state=link
 
 - name: Disable Default Site
