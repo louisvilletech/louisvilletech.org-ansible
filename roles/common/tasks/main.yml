@@ -11,7 +11,7 @@
 - name: ensure wheel group is present
   action: group name=wheel state=present
 - name: ensure users are present
-  action: user state=present shell=/bin/bash group=www-data name={{ item }}
+  action: user state=present shell=/bin/bash groups=wheel,www-data name={{ item }}
   with_items:
     - deploy
 - name: put authorized key for nathan in place
