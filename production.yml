@@ -1,0 +1,7 @@
+---
+- hosts: production
+  roles:
+    - common
+  remote_user: root
+  vars:
+

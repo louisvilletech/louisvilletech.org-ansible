@@ -1,0 +1,22 @@
+---
+- name: ensure apt-get update has been run
+  apt: update_cache=yes
+- name: install base pkgs
+  apt: pkg={{ item }} state=latest install_recommends=no
+  with_items:
+    - build-essential
+    - git
+- name: configure sudoers
+  lineinfile: dest=/etc/sudoers backup=yes state=present regexp='^%wheel' insertafter="^%sudo" line='%wheel ALL=(ALL) NOPASSWD:ALL'
+- name: ensure wheel group is present
+  action: group name=wheel state=present
+- name: ensure users are present
+  action: user state=present shell=/bin/bash group=wheel name={{ item }}
+  with_items:
+    - deploy
+- name: put authorized key for nathan in place
+  action: authorized_key user=deploy key="{{ lookup('pipe', 'curl -s https://github.com/anoldguy.keys|head -1') }}"
+- name: put authorized key for ukiah in place
+  action: authorized_key user=deploy key="{{ lookup('pipe', 'curl -s https://github.com/supermighty.keys|head -1') }}"
+- name: put authorized key for eric in place
+  action: authorized_key user=deploy key="{{ lookup('pipe', 'curl -s https://github.com/ericlathrop.keys|head -1') }}"
