@@ -14,7 +14,7 @@
 - name: Add nginx vhost config
   when: nginxinstalled|success
   register: nginxconfig
-  template: src=louisville.io.j2 dest=/etc/nginx/sites-available/louisville.io.conf owner=root group=root
+  copy: src=louisville.io.conf dest=/etc/nginx/sites-available/louisville.io.conf owner=root group=root
 
 - name: Activate the app
   when: nginxinstalled
