@@ -4,5 +4,4 @@
     - common
     - web
   remote_user: root
-  vars:
-
+  vars: []
