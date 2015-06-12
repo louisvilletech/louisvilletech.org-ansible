@@ -9,3 +9,9 @@
 
 - name: Copy site
   command: rsync --recursive --copy-links --perms --delete /home/deploy/louisville.io/dest/ /www/louisville.io/htdocs
+
+- name: Install crontab job
+  cron: name="Generate louisville.io"
+        minute="*/10"
+        user="deploy"
+        job="cd /home/deploy/louisville.io && npm run build && rsync --recursive --copy-links --perms --delete /home/deploy/louisville.io/dest/ /www/louisville.io/htdocs"
