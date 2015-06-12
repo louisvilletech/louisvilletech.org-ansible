@@ -29,17 +29,3 @@
   file: dest=/www/louisville.io mode=775 state=directory owner=www-data group=www-data recurse=yes
   notify:
     - Reload Nginx
-- name: Install git
-  apt: name=git
-- name: Install nodejs
-  apt: name=nodejs
-- name: Install nodejs-legacy
-  apt: name=nodejs-legacy
-- name: Install npm
-  apt: name=npm
-- name: Download site
-  git: repo=https://github.com/louisvilleio/loutechcal.git dest=/home/deploy/loutechcal
-- name: Install dependencies
-  npm: path=/home/deploy/loutechcal production=yes
-- name: Build site
-  command: npm run build chdir=/home/deploy/loutechcal

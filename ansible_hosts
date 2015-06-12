@@ -1,3 +1,2 @@
 [production]
-louisville.io ansible_ssh_user=root
-
+louisville.io

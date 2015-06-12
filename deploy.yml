@@ -1,0 +1,6 @@
+---
+- hosts: production
+  roles:
+    - louisville.io
+  remote_user: deploy
+  vars: []
