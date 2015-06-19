@@ -1,0 +1,13 @@
+---
+- name: Install slackin
+  npm: name=slackin
+       global=yes
+- name: Create slackin user
+  user: name=slackin
+        shell=/usr/sbin/nologin
+- name: Install slackin upstart config
+  template: src=slackin.conf
+            dest=/etc/init/slackin.conf
+- name: Start slackin
+  service: name=slackin
+           state=restarted

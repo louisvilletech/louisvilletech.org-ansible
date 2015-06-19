@@ -11,14 +11,16 @@
   notify:
   - Reload Nginx
 
-- name: Add nginx vhost config
+- name: Add louisville.io nginx vhost config
   when: nginxinstalled|success
   register: nginxconfig
   copy: src=louisville.io.conf dest=/etc/nginx/sites-available/louisville.io.conf owner=root group=root
 
-- name: Activate the app
+- name: Activate the louisville.io nginx site
   when: nginxinstalled|success
   file: src=/etc/nginx/sites-available/louisville.io.conf dest=/etc/nginx/sites-enabled/louisville.io.conf state=link
+  notify:
+    - Reload Nginx
 
 - name: Disable Default Site
   when: nginxinstalled|success
@@ -27,5 +29,16 @@
 - name: Web Root Permissions
   when: nginxinstalled|success
   file: dest=/www/louisville.io mode=775 state=directory owner=www-data group=www-data recurse=yes
+  notify:
+    - Reload Nginx
+
+- name: Add slackin.louisville.io nginx vhost config
+  when: nginxinstalled|success
+  register: nginxconfig
+  copy: src=slackin.louisville.io.conf dest=/etc/nginx/sites-available/slackin.louisville.io.conf owner=root group=root
+
+- name: Activate the slackin.louisville.io nginx site
+  when: nginxinstalled|success
+  file: src=/etc/nginx/sites-available/slackin.louisville.io.conf dest=/etc/nginx/sites-enabled/slackin.louisville.io.conf state=link
   notify:
     - Reload Nginx
