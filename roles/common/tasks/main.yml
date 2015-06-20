@@ -23,3 +23,5 @@
   action: authorized_key user=deploy key=https://github.com/supermighty.keys
 - name: put authorized key for eric in place
   action: authorized_key user=deploy key=https://github.com/ericlathrop.keys
+- name: put authorized key for eric in place
+  action: authorized_key user=deploy key=https://github.com/seansith.keys
