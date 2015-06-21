@@ -1,0 +1,10 @@
+---
+- hosts: all
+  roles:
+    - common
+    - web
+    - slackin.louisville.io
+    - louisville.io
+  remote_user: vagrant
+  vars:
+    slack_api_token: replaceme
