@@ -1,6 +1,3 @@
-- name: Install rsync
-  apt: pkg=rsync state=installed update_cache=true
-
 - name: Download site
   git: repo=https://github.com/louisvilleio/louisville.io.git dest=/home/deploy/louisville.io
 

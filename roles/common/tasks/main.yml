@@ -5,6 +5,7 @@
   apt: pkg={{ item }} state=latest install_recommends=no
   with_items:
     - sudo
+    - rsync
     - build-essential
     - git
     - nodejs
