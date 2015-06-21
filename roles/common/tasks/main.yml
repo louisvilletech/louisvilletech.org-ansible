@@ -4,6 +4,7 @@
 - name: install base pkgs
   apt: pkg={{ item }} state=latest install_recommends=no
   with_items:
+    - sudo
     - build-essential
     - git
     - nodejs
