@@ -1,0 +1,13 @@
+[Unit]
+Description=Slackin Slack auto-inviter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/slackin
+User=slackin
+ExecStart=/usr/local/bin/slackin --port $SLACKIN_PORT $SLACK_DOMAIN $SLACK_API_TOKEN
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,3 @@
+SLACKIN_PORT=8002
+SLACK_DOMAIN=louisville
+SLACK_API_TOKEN={{ slack_api_token }}

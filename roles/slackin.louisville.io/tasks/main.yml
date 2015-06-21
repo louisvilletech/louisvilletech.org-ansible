@@ -5,9 +5,15 @@
 - name: Create slackin user
   user: name=slackin
         shell=/usr/sbin/nologin
-- name: Install slackin upstart config
-  template: src=slackin.conf
-            dest=/etc/init/slackin.conf
+- name: Install slackin systemd config
+  template: src=slackin
+            dest=/etc/default/slackin
+- name: Install slackin systemd service
+  copy: src=slackin.service
+        dest=/etc/systemd/system/slackin.service
+        owner=root
+        group=root
 - name: Start slackin
   service: name=slackin
-           state=restarted
+           enabled=yes
+           state=started
