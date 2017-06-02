@@ -3,10 +3,10 @@
 
 Initial server setup:
 ```
-ansible-playbook -i ansible_hosts production.yml
+ansible-playbook production.yml
 ```
 
 Deploy site:
 ```
-ansible-playbook -i ansible_hosts deploy.yml
+ansible-playbook deploy.yml
 ```
