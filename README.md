@@ -1,5 +1,5 @@
-# louisville.io-ansible
-[Ansible](http://docs.ansible.com/index.html) playbooks for setting up [Louisville.io](http://louisville.io) servers.
+# louisvilletech.org-ansible
+[Ansible](http://docs.ansible.com/index.html) playbooks for setting up [LouisvilleTech.org](http://louisvilletech.org) servers.
 
 Initial server setup:
 ```
