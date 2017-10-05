@@ -1,0 +1,17 @@
+- name: Download site
+  git: repo=https://github.com/louisvilletech/louisvilletech.org.git dest=/home/deploy/louisvilletech.org
+
+- name: Install dependencies
+  npm: path=/home/deploy/louisvilletech.org production=yes
+
+- name: Build site
+  command: npm run build chdir=/home/deploy/louisvilletech.org
+
+- name: Copy site
+  command: rsync --recursive --copy-links --delete /home/deploy/louisvilletech.org/dest/ /www/louisvilletech.org/htdocs
+
+- name: Install crontab job
+  cron: name="Generate louisvilletech.org"
+        minute="*/10"
+        user="deploy"
+        job="cd /home/deploy/louisvilletech.org && npm run build && rsync --recursive --copy-links --delete /home/deploy/louisvilletech.org/dest/ /www/louisvilletech.org/htdocs"
