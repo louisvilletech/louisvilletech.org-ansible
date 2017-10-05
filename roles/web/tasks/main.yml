@@ -7,18 +7,18 @@
 
 - name: Create Web Root
   when: nginxinstalled|success
-  file: dest=/www/louisville.io/htdocs mode=2775 state=directory owner=www-data group=www-data
+  file: dest=/www/louisvilletech.org/htdocs mode=2775 state=directory owner=www-data group=www-data
   notify:
   - Reload Nginx
 
-- name: Add louisville.io nginx vhost config
+- name: Add louisvilletech.org nginx vhost config
   when: nginxinstalled|success
   register: nginxconfig
-  copy: src=louisville.io.conf dest=/etc/nginx/sites-available/louisville.io.conf owner=root group=root
+  copy: src=louisvilletech.org.conf dest=/etc/nginx/sites-available/louisvilletech.org.conf owner=root group=root
 
-- name: Activate the louisville.io nginx site
+- name: Activate the louisvilletech.org nginx site
   when: nginxinstalled|success
-  file: src=/etc/nginx/sites-available/louisville.io.conf dest=/etc/nginx/sites-enabled/louisville.io.conf state=link
+  file: src=/etc/nginx/sites-available/louisvilletech.org.conf dest=/etc/nginx/sites-enabled/louisvilletech.org.conf state=link
   notify:
     - Reload Nginx
 
@@ -28,17 +28,17 @@
 
 - name: Web Root Permissions
   when: nginxinstalled|success
-  file: dest=/www/louisville.io mode=775 state=directory owner=www-data group=www-data recurse=yes
+  file: dest=/www/louisvilletech.org mode=775 state=directory owner=www-data group=www-data recurse=yes
   notify:
     - Reload Nginx
 
-- name: Add slackin.louisville.io nginx vhost config
+- name: Add slackin.louisvilletech.org nginx vhost config
   when: nginxinstalled|success
   register: nginxconfig
-  copy: src=slackin.louisville.io.conf dest=/etc/nginx/sites-available/slackin.louisville.io.conf owner=root group=root
+  copy: src=slackin.louisvilletech.org.conf dest=/etc/nginx/sites-available/slackin.louisvilletech.org.conf owner=root group=root
 
-- name: Activate the slackin.louisville.io nginx site
+- name: Activate the slackin.louisvilletech.org nginx site
   when: nginxinstalled|success
-  file: src=/etc/nginx/sites-available/slackin.louisville.io.conf dest=/etc/nginx/sites-enabled/slackin.louisville.io.conf state=link
+  file: src=/etc/nginx/sites-available/slackin.louisvilletech.org.conf dest=/etc/nginx/sites-enabled/slackin.louisvilletech.org.conf state=link
   notify:
     - Reload Nginx
