@@ -1,8 +1,14 @@
 ---
 - hosts: production
+  remote_user: root
+
+  gather_facts: no
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python-simplejson
+
   roles:
     - common
     - slackin
     - web
-  remote_user: root
   vars: []
