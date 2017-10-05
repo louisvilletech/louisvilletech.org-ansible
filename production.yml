@@ -2,7 +2,7 @@
 - hosts: production
   roles:
     - common
-    - slackin.louisville.io
+    - slackin
     - web
   remote_user: root
   vars: []
