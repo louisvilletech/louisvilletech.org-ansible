@@ -1,6 +1,6 @@
 ---
 - hosts: production
   roles:
-    - louisville.io
+    - louisvilletech.org
   remote_user: deploy
   vars: []
