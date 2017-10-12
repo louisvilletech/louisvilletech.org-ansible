@@ -8,9 +8,6 @@
     - rsync
     - build-essential
     - git
-    - nodejs
-    - nodejs-legacy
-    - npm
 - name: configure sudoers
   lineinfile: dest=/etc/sudoers backup=yes state=present regexp='^%wheel' insertafter="^%sudo" line='%wheel ALL=(ALL) NOPASSWD:ALL'
 - name: ensure wheel group is present

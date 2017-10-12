@@ -1,0 +1,7 @@
+---
+- name: run node installer script
+  script: setup-node-8.x.sh
+  args:
+    creates: /etc/apt/sources.list.d/nodesource.list
+- name: install node
+  apt: pkg=nodejs state=latest install_recommends=no
