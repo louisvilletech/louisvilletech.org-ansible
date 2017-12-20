@@ -1,4 +1,11 @@
 ---
+- name: Add Certbot PPA
+  apt_repository:
+    repo: 'ppa:certbot/certbot'
+
+- name: Install Certbot
+  apt: pkg=python-certbot-nginx state=installed update_cache=true
+
 - name: Install Nginx
   apt: pkg=nginx state=installed update_cache=true
   notify:
@@ -40,5 +47,10 @@
 - name: Activate the slackin.louisvilletech.org nginx site
   when: nginxinstalled|success
   file: src=/etc/nginx/sites-available/slackin.louisvilletech.org.conf dest=/etc/nginx/sites-enabled/slackin.louisvilletech.org.conf state=link
+  notify:
+    - Reload Nginx
+
+- name: Get louisvilletech.org certificates
+  command: certbot -n --nginx --agree-tos --email eric@ericlathrop.com --redirect --uir --hsts --staple-ocsp --must-staple -d louisvilletech.org -d www.louisvilletech.org -d slackin.louisvilletech.org
   notify:
     - Reload Nginx
