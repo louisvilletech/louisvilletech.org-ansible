@@ -3,7 +3,7 @@
 
 Initial server setup:
 ```
-ansible-playbook production.yml
+ansible-playbook initial-server-setup.yml
 ```
 
 Deploy site:
