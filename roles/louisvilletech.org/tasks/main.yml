@@ -4,8 +4,12 @@
 - name: Install dependencies
   npm: path=/home/deploy/louisvilletech.org production=yes
 
+- name: Install build script
+  template: src=generate-site.sh
+            dest=/home/deploy/louisvilletech.org/generate-site.sh
+
 - name: Build site
-  command: npm run build chdir=/home/deploy/louisvilletech.org
+  command: ./generate-site.sh chdir=/home/deploy/louisvilletech.org
 
 - name: Copy site
   command: rsync --recursive --copy-links --delete /home/deploy/louisvilletech.org/dest/ /www/louisvilletech.org/htdocs
@@ -14,4 +18,4 @@
   cron: name="Generate louisvilletech.org"
         minute="*/10"
         user="deploy"
-        job="cd /home/deploy/louisvilletech.org && npm run build && rsync --recursive --copy-links --delete /home/deploy/louisvilletech.org/dest/ /www/louisvilletech.org/htdocs"
+        job="cd /home/deploy/louisvilletech.org && ./generate-site.sh && rsync --recursive --copy-links --delete /home/deploy/louisvilletech.org/dest/ /www/louisvilletech.org/htdocs"
