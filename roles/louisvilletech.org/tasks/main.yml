@@ -7,6 +7,7 @@
 - name: Install build script
   template: src=generate-site.sh
             dest=/home/deploy/louisvilletech.org/generate-site.sh
+            mode=775
 
 - name: Build site
   command: ./generate-site.sh chdir=/home/deploy/louisvilletech.org
